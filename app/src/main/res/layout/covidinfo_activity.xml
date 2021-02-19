@@ -20,7 +20,7 @@
         tools:listitem="@layout/row2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/previous_btn"
         android:layout_width="110dp"
         android:layout_height="55dp"
         android:layout_marginBottom="8dp"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/next_btn"
         android:layout_width="110dp"
         android:layout_height="55dp"
         android:text="Next Day"
@@ -54,8 +54,8 @@
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
         android:layout_marginBottom="23dp"
+        android:text=""
         android:textStyle="bold"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/recycleView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -64,12 +64,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/subscribe_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rotationY="6"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="672dp" />
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="672dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginBottom="11dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

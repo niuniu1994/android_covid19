@@ -27,7 +27,7 @@ class CovidInfoViewModel : ViewModel() {
     var provinces = MutableLiveData<List<Province>>()
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getProvinces(country: String) {
+    fun getProvinces(country: String,date:String) {
 
         GlobalScope.launch {
 //            val url = URL("https://api.covid19api.com/live/country/$country")
@@ -63,10 +63,9 @@ class CovidInfoViewModel : ViewModel() {
                 var provincesList = mutableListOf<Province>()
                 if (jsonObject != null) {
                     val jsonArray = jsonObject.getJSONArray("provinces")
-                    val today = LocalDate.now().toString()
                     for (index in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(index)
-                        if (jsonObject.getString("Date").substring(0, 10).equals(today)) {
+                        if (jsonObject.getString("Date").substring(0, 10).equals(date)) {
                             val provinceName = jsonObject.getString("Province")
                             val active = jsonObject.getInt("Active")
                             val recovered = jsonObject.getInt("Recovered")
