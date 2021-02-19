@@ -40,6 +40,7 @@ class Search : Fragment() {
         //RecycleView
         val adapter = SearchAdapter(requireActivity())
 
+        //navigate to covidinfo activity
         adapter.setOnItemClickListener{
 
             val t = LocalDate.now()
@@ -48,7 +49,7 @@ class Search : Fragment() {
 
             val intent = Intent(requireActivity(), CovidInfoActivity::class.java)
             intent.putExtra("country",it)
-            startActivity(intent)
+            requireActivity().startActivity(intent)
         }
 
         val recyclerView = view.recycleView1

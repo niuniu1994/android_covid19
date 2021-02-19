@@ -1,15 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".CovidInfoActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/recycleView2"
+        android:layout_width="413dp"
+        android:layout_height="603dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="MissingConstraints"
         tools:listitem="@layout/row2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:text="Previous Day"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleView2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="110dp"
+        android:layout_height="55dp"
+        android:text="Next Day"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="132dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginLeft="126dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginRight="153dp"
+        android:layout_marginBottom="23dp"
+        android:textStyle="bold"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/recycleView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotationY="6"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="672dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,6 +37,7 @@ android {
 dependencies {
 
     def room_version = "2.2.5"
+    implementation group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.4'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
