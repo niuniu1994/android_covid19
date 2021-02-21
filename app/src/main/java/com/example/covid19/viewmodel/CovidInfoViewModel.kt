@@ -30,7 +30,7 @@ class CovidInfoViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val countryRepository: CountryRepository
 
-    var status =  MutableLiveData<Int>()
+    var status = MutableLiveData<Int>()
 
     var provinces = MutableLiveData<List<Province>>()
 
@@ -40,7 +40,7 @@ class CovidInfoViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getProvinces(country: String,date:String) {
+    fun getProvinces(country: String, date: String) {
 
         GlobalScope.launch {
             val client = OkHttpClient()
@@ -60,31 +60,28 @@ class CovidInfoViewModel(application: Application) : AndroidViewModel(applicatio
 
             if (jsonObject != null) {
                 var provincesList = mutableListOf<Province>()
-                if (jsonObject != null) {
-                    val jsonArray = jsonObject.getJSONArray("provinces")
-                    for (index in 0 until jsonArray.length()) {
-                        val jsonObject = jsonArray.getJSONObject(index)
-                        if (jsonObject.getString("Date").substring(0, 10).equals(date)) {
-                            val provinceName = jsonObject.getString("Province")
-                            val active = jsonObject.getInt("Active")
-                            val recovered = jsonObject.getInt("Recovered")
-                            val confirmed = jsonObject.getInt("Confirmed")
-                            val deaths = jsonObject.getInt("Deaths")
-                            val province =
-                                Province(provinceName, confirmed, recovered, deaths, active)
-                            provincesList.add(province)
-                        }
-                    }
-                    provinces.postValue(provincesList)
-                }
 
+                val jsonArray = jsonObject.getJSONArray("provinces")
+                for (index in 0 until jsonArray.length()) {
+                    val jsonObject = jsonArray.getJSONObject(index)
+                    if (jsonObject.getString("Date").substring(0, 10).equals(date)) {
+                        val provinceName = jsonObject.getString("Province")
+                        val active = jsonObject.getInt("Active")
+                        val recovered = jsonObject.getInt("Recovered")
+                        val confirmed = jsonObject.getInt("Confirmed")
+                        val deaths = jsonObject.getInt("Deaths")
+                        val province =
+                            Province(provinceName, confirmed, recovered, deaths, active)
+                        provincesList.add(province)
+                    }
+                }
+                provinces.postValue(provincesList)
             }
-            val va = provinces.value
         }
 
     }
 
-    fun getStatus(country: String){
+    fun getStatus(country: String) {
         GlobalScope.launch(Dispatchers.IO) {
             status.postValue(countryRepository.getCountryStatusByName(country))
         }

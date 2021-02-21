@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CovidInfoActivity"></activity>
+        <service android:name=".services.NotificationService"/>
+        <receiver android:name=".services.NotificationBroadest"/>
     </application>
 
 </manifest>

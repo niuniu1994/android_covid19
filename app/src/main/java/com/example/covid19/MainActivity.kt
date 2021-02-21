@@ -2,6 +2,7 @@ package com.example.covid19
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.covid19.database.AppDatabase
 import com.example.covid19.entity.Country
+import com.example.covid19.services.NotificationService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -32,12 +34,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Setting up bottom nav bar
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         val navController = findNavController(R.id.fragment)
         val appConfiguration = AppBarConfiguration(setOf(R.id.dashboard,R.id.dashboard))
         setupActionBarWithNavController(navController,appConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         db = AppDatabase.getDataBase(this)
+
+        // Initialization database
         GlobalScope.launch {
             val num = db!!.countryDao().findAll()
             if (num == 0){
@@ -45,6 +50,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        Intent(this,NotificationService::class.java).also {
+            startService(it)
+        }
 
 
     }
