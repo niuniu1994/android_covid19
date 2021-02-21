@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.covid19.entity.Country
 import kotlinx.coroutines.flow.Flow
 
@@ -22,4 +23,10 @@ interface CountryDao {
 
     @Query("select count(*) from Country")
     fun findAll():Int
+
+    @Query("update Country set status = :status where name = :country  ")
+    fun modifyCountryStatus(country:String, status:Int)
+
+    @Query("select status from country where name = :country")
+    fun getCountryStatusByName(country: String):Int
 }

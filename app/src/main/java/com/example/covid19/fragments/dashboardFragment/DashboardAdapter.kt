@@ -12,10 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.R
 import com.example.covid19.entity.Country
 import kotlinx.android.synthetic.main.row.view.*
+import kotlinx.android.synthetic.main.row.view.title
+import kotlinx.android.synthetic.main.row1.view.*
 import java.io.InputStream
 
 class DashboardAdapter(private val context: FragmentActivity) :
     RecyclerView.Adapter<DashboardAdapter.MyViewHolder>() {
+
+    //call back function
+    private lateinit var onItemClickListener: (String) -> Unit
 
     private  var countryList:List<Country> = emptyList()
 
@@ -29,6 +34,10 @@ class DashboardAdapter(private val context: FragmentActivity) :
         val currentCountry = countryList[position]
         holder.itemView.title.text = currentCountry.name
         holder.itemView.icon.setImageBitmap(BitmapFactory.decodeStream(inputStream))
+
+        holder.itemView.setOnClickListener{
+            this.onItemClickListener(it.title.text.toString())
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -44,5 +53,9 @@ class DashboardAdapter(private val context: FragmentActivity) :
     fun setCountryList(countries: List<Country>) {
         countryList = countries
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: (String) -> Unit) {
+        this.onItemClickListener = listener
     }
 }

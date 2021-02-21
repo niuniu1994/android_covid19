@@ -60,6 +60,6 @@ class AsyncForProvincesList(private val context: CovidInfoActivity, private val 
 
         }
 
-        context.initialization(provincesList)
+
     }
 }

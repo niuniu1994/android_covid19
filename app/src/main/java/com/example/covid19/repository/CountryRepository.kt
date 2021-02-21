@@ -27,6 +27,13 @@ class CountryRepository(private val countryDao: CountryDao) {
         return countryDao.findCountryByName(countryName)
     }
 
+    fun getCountryStatusByName(countryName: String):Int{
+        return countryDao.getCountryStatusByName(countryName)
+    }
+    fun modifyCountryStatus(countryName: String, status: Int){
+        return countryDao.modifyCountryStatus(countryName,status)
+    }
+
     fun getAll():Int{
         return countryDao.findAll()
     }

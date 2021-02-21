@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
     }
     /**
      * Initialization country info database - add all country name from json to database

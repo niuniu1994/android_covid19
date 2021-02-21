@@ -42,11 +42,6 @@ class Search : Fragment() {
 
         //navigate to covidinfo activity
         adapter.setOnItemClickListener{
-
-            val t = LocalDate.now()
-            t.format(DateTimeFormatter.ISO_DATE)
-            Log.i("lis","$t")
-
             val intent = Intent(requireActivity(), CovidInfoActivity::class.java)
             intent.putExtra("country",it)
             requireActivity().startActivity(intent)
