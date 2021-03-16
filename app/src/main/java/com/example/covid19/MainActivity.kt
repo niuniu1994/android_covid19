@@ -74,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             countryList.add(country)
         }
         db!!.countryDao().insertAll(countryList)
-        Toast.makeText(this,"Database initialized successfully",Toast.LENGTH_SHORT)
     }
 
 }

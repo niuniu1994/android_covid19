@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.covidinfo_activity.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
@@ -25,9 +26,16 @@ import java.util.*
  * CovidInfoActivity occupied the layout of covidinfo_activity who shows the daily Covid data of different country
  */
 class CovidInfoActivity : AppCompatActivity() {
-
+    val cal = Calendar.getInstance()
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     @RequiresApi(Build.VERSION_CODES.O)
-    var date = LocalDate.now()
+    var date:Date = Date().also { cal.time = it; cal.add(Calendar.DATE,-30)}
+    val oneMonthLimit = cal.time
+
+
+
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +55,9 @@ class CovidInfoActivity : AppCompatActivity() {
         //viewModel
         val viewModel = ViewModelProvider(this).get(CovidInfoViewModel::class.java)
         if (country != null) {
-            viewModel.getProvinces(country,date.toString())
+            viewModel.getProvinces(country,dateFormat.format(date))
             viewModel.getStatus(country)
-            today_text.text = date.toString()
+            today_text.text = dateFormat.format(date)
         }
 
         viewModel.provinces.observe(this, Observer { data -> adapter.setData(data) })
@@ -62,10 +70,15 @@ class CovidInfoActivity : AppCompatActivity() {
 
         // jump to previous day
         previous_btn.setOnClickListener{
-            if (date.compareTo(date.minusMonths(1)) > 0 && country != null){
-                date = date.minusDays(1)
-                today_text.text = date.toString()
-                viewModel.getProvinces(country,date.toString())
+
+
+            if (date.compareTo(oneMonthLimit) > 0 && country != null){
+                cal.time = date
+                cal.add(Calendar.DATE, -1)
+
+                date = cal.time
+                today_text.text = dateFormat.format(date)
+                viewModel.getProvinces(country,dateFormat.format(date))
             }else{
                 Toast.makeText(this,"Only last 30 days historical data is available",Toast.LENGTH_LONG)
             }
@@ -73,10 +86,16 @@ class CovidInfoActivity : AppCompatActivity() {
 
         // jump to next day
         next_btn.setOnClickListener{
-            if (date.compareTo(LocalDate.now()) < 0 && country != null){
-                date = date.plusDays(1)
-                today_text.text = date.toString()
-                viewModel.getProvinces(country,date.toString())
+
+            if (date.compareTo(Date()) < 0 && country != null){
+
+
+                cal.time = date
+                cal.add(Calendar.DATE, 1)
+
+                date = cal.time
+                today_text.text = dateFormat.format(date)
+                viewModel.getProvinces(country,dateFormat.format(date))
             }else{
                 Toast.makeText(this,"Only last 30 days historical data is available",Toast.LENGTH_LONG)
             }
