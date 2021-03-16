@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.entity.Province
 import kotlinx.android.synthetic.main.row2.view.*
 
+
 class CovidInfoAdapter(): RecyclerView.Adapter<CovidInfoAdapter.MyViewHolder>()  {
 
     private var provinceList:List<Province> = emptyList()

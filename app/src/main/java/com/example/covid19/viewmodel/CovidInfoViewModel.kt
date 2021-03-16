@@ -26,6 +26,9 @@ import java.time.LocalDate
 import javax.net.ssl.HttpsURLConnection
 import kotlin.concurrent.thread
 
+/**
+ * We use this viewmodel only in CovidInfoActivity
+ */
 class CovidInfoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val countryRepository: CountryRepository

@@ -20,6 +20,10 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.util.*
 
+
+/**
+ * CovidInfoActivity occupied the layout of covidinfo_activity who shows the daily Covid data of different country
+ */
 class CovidInfoActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * ViewModel for dashboard fragment
+ * ViewModel for dashboard fragment and searchFragment
  */
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
